@@ -4,9 +4,20 @@
 <p>Entries:</p>
 <ul>
   {% for entry in entries %}
-  <li>{{ entry.date_added|date:'M d, Y H:i'}} {{entry.text|linebreaks}}</li>
+
+  <li>
+    {{ entry.date_added|date:'M d, Y H:i'}} {{entry.text|linebreaks}}
+    <p>
+      <a href="{% url 'learning_logs:edit_entry' entry.id %}">Edit entry</a>
+    </p>
+  </li>
+
   {% empty %}
   <p>No Entry for the topic.</p>
   {% endfor %}
 </ul>
+
+<p>
+  <a href="{% url 'learning_logs:new_entry' topic.id %}"> Add new entry </a>
+</p>
 {% endblock content %}
